@@ -11,14 +11,16 @@
 <polymer-element name="fct-stage" attributes="">
   <template>
     <link rel="stylesheet" href="fct-stage.css">
-    
+
+    <google-signin width="iconOnly" clientId="759839009338-n80siiikg3977u0qn277ebctn5s3pbgt.apps.googleusercontent.com" scopes="profile" id="gsign"></google-signin>
+
     <firebase-element id="base" on-data-change="{{handleResponse}}" keys="{{keys}}" data="{{data}}" location="https://facteur.firebaseio.com/posts/"></firebase-element>
 
     <geo-location watchpos highAccuracy id="geolocation" longitude="{{longitude}}" latitude="{{latitude}}"></geo-location>
 
-    <google-map map="{{map}}" zoom="20"  latitude="{{latitude}}" disableDefaultUI draggable="false" longitude="{{longitude}}" id="googlemap" showCenterMarker fit>
+    <google-map map="{{map}}" zoom="17"  latitude="{{latitude}}" disableDefaultUI draggable="false" longitude="{{longitude}}" id="googlemap" showCenterMarker fit>
       <template repeat="{{ key in keys }}">
-        <google-map-marker on-tap="{{doeIets}}" class="testmarker" id="marker" latitude="{{data[key].latitude}}" longitude="{{data[key].longitude}}"></google-map-marker>
+        <google-map-marker latitude="{{data[key].latitude}}" longitude="{{data[key].longitude}}"></google-map-marker>
       </template>
     </google-map> 
 
