@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Polymer WebApp</title>
-  <meta name="description" content="">
+  <title>Facteur</title>
+  <meta name="description" content="Een A-StadLabs Experiment">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
@@ -13,23 +13,37 @@
   <link rel="stylesheet" href="styles/main.css">
   <!-- endbuild-->
 
+  <!-- ios webapp stuff -->
+  <link rel="apple-touch-icon" href="/custom_icon.png">
+  <link rel="apple-touch-startup-image" href="/startup.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+  
   <script src="bower_components/platform/platform.js"></script>
   <!-- build:vulcanized elements/elements.vulcanized.html -->
-  <link rel="import" href="elements/elements.html">
+  <link rel="import" href="elements/fct-stage/fct-stage.html">
   <!-- endbuild-->
 </head>
 
 <body unresolved>
 
-  <div class="hero-unit">
-    <yo-greeting></yo-greeting>
-    <p>You now have</p>
-    <yo-list></yo-list>
-  </div>
+  <fct-stage></fct-stage>
 
   <!-- build:js scripts/app.js -->
   <script src="scripts/app.js"></script>
   <!-- endbuild-->
+  <script>
+  
+    if (window.navigator.standalone) {
+      $("meta[name='apple-mobile-web-app-status-bar-style']").remove();
+      $('#in_web_clips').show();
+    }
+    else {
+      $('#in_safari').show();
+    }
+  
+  </script>
 </body>
 
 </html>

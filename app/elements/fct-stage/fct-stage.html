@@ -1,0 +1,36 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/geo-location/geo-location.html">
+<link rel="import" href="../../bower_components/google-map/google-map.html">
+<link rel="import" href="../../bower_components/google-signin/google-signin.html">
+<link rel="import" href="../../bower_components/core-icon-button/core-icon-button.html">
+<link rel="import" href="../../bower_components/firebase-element/firebase-element.html">
+
+<!-- Our components -->
+<link rel="import" href="../../elements/fct-letterhead/fct-letterhead.html">
+
+<polymer-element name="fct-stage" attributes="">
+  <template>
+    <link rel="stylesheet" href="fct-stage.css">
+    
+    <firebase-element id="base" on-data-change="{{handleResponse}}" keys="{{keys}}" data="{{data}}" location="https://facteur.firebaseio.com/posts/"></firebase-element>
+
+    <geo-location watchpos highAccuracy id="geolocation" longitude="{{longitude}}" latitude="{{latitude}}"></geo-location>
+
+    <google-map map="{{map}}" zoom="20"  latitude="{{latitude}}" disableDefaultUI draggable="false" longitude="{{longitude}}" id="googlemap" showCenterMarker fit>
+      <template repeat="{{ key in keys }}">
+        <google-map-marker on-tap="{{doeIets}}" class="testmarker" id="marker" latitude="{{data[key].latitude}}" longitude="{{data[key].longitude}}"></google-map-marker>
+      </template>
+    </google-map> 
+
+  </template>
+  <script>
+    (function () {
+      'use strict';
+
+      Polymer({
+        // define element prototype here
+      });
+
+    })();
+  </script>
+</polymer-element>
