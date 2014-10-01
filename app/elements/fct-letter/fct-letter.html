@@ -1,13 +1,21 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../../bower_components/core-icon-button/core-icon-button.html">
+<link rel="import" href="../../bower_components/core-icon-button/core-icon-button.html"><link rel="import" href="../../elements/fct-comment/fct-comment.html">
+<link rel="import" href="../../bower_components/firebase-element/firebase-element.html">
+
 
 <polymer-element name="fct-letter" attributes="letter">
   <template>
     <link rel="stylesheet" href="fct-letter.css">
+
+    <firebase-element id="base" on-data-change="{{handleResponse}}" keys="{{keys}}" data="{{data}}" log location="https://facteur.firebaseio.com/posts/{{letter.key}}/comments/"></firebase-element>
+
     <core-icon-button icon="close" on-tap="{{close}}"></core-icon-button>
         <img src="{{letter.data.avatar}}">
     <h1>{{letter.data.bericht}}</h1>
     <small>{{letter.afstand}} | {{letter.data.nick}}</small>
+    <template repeat="{{key in keys}}">
+      <fct-comment comment="{{data[key]}}"></fct-comment>
+    </template>
   </template>
   <script>
     (function () {
@@ -15,9 +23,14 @@
 
       Polymer({
         // define element prototype here
-        ready: function(){
-
+        keyChanged: function(){
+          this.handleResponse();
         },
+
+        handleResponse: function(){
+          console.log(this.keys);
+        },
+
         close: function(){
           this.fire('close');
         }

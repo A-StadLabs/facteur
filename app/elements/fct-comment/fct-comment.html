@@ -1,8 +1,10 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
-<polymer-element name="fct-comment" attributes="">
+<polymer-element name="fct-comment" attributes="comment">
   <template>
     <link rel="stylesheet" href="fct-comment.css">
+    <img src="{{comment.avatar}}"><p>Tijd: {{comment.time}}</p>
+      <p>{{comment.usernick}} / {{comment.comment}}</p>
   </template>
   <script>
     (function () {

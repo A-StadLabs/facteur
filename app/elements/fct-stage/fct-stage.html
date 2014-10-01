@@ -6,6 +6,7 @@
 <link rel="import" href="../../bower_components/core-icon-button/core-icon-button.html">
 <link rel="import" href="../../bower_components/core-overlay/core-overlay.html">
 <link rel="import" href="../../bower_components/firebase-element/firebase-element.html">
+<link rel="import" href="../../bower_components/paper-slider/paper-slider.html">
 
 
 <!-- Our components -->
@@ -23,11 +24,15 @@
     <geo-location watchpos highAccuracy id="geolocation" longitude="{{longitude}}" latitude="{{latitude}}"></geo-location>
 
     <google-map map="{{map}}" zoom="17"  latitude="{{latitude}}" disableDefaultUI draggable="false" longitude="{{longitude}}" id="googlemap">
+
       
       <template repeat="{{ key in keys }}">
         <google-map-marker latitude="{{data[key].latitude}}" longitude="{{data[key].longitude}}"></google-map-marker>
       </template>
     </google-map> 
+
+    <paper-slider pin id="slider" value="17" min="1" max="20"></paper-slider>
+
 
     <core-selector valueattr="letter" id="letterselect">
       <template id="letterheads" repeat="{{l, i in inhoud}}">
@@ -36,8 +41,7 @@
     </core-selector>
 
     <core-overlay id="overlay">
-    <h1>Kiki Stanck</h1>
-        <fct-letter letter="" id="fctletter"></fct-letter>
+      <fct-letter letter="" id="fctletter"></fct-letter>
     </core-overlay>
 
 
@@ -82,7 +86,6 @@
                 // t.model.profile = resp;
             });
         });
-        // document.querySelector("#status").innerHTML = "You are now signed in.";
         console.log('you are now signed in.');
       });
 
@@ -127,12 +130,16 @@
             }
           });
 
+          this.$.slider.addEventListener('core-change', function(){
+            console.log('slider: ', this.value);
+            that.$.googlemap.zoom = this.value;
+          });
+
           document.addEventListener('poschanged', function(){
             that.handleResponse();
           });
 
           this.$.letterselect.addEventListener('core-select', function(e){
-            console.log('er is iet geselecteerd: ', this.selected);
             that.$.fctletter.letter = this.selected;
             that.$.overlay.open();
           });
@@ -145,7 +152,6 @@
         handleResponse: function(e){
           var berichten = [];
           var t = this.$.letterheads;
-          console.log(t);
           t.model = {inhoud: berichten};
           for (var i = this.keys.length - 1; i >= 0; i--) {
             var j = this.keys[i];
