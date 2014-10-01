@@ -1,8 +1,13 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/core-icon-button/core-icon-button.html">
 
-<polymer-element name="fct-letter" attributes="">
+<polymer-element name="fct-letter" attributes="letter">
   <template>
     <link rel="stylesheet" href="fct-letter.css">
+    <core-icon-button icon="close" on-tap="{{close}}"></core-icon-button>
+        <img src="{{letter.data.avatar}}">
+    <h1>{{letter.data.bericht}}</h1>
+    <small>{{letter.afstand}} | {{letter.data.nick}}</small>
   </template>
   <script>
     (function () {
@@ -10,6 +15,12 @@
 
       Polymer({
         // define element prototype here
+        ready: function(){
+
+        },
+        close: function(){
+          this.fire('close');
+        }
       });
 
     })();

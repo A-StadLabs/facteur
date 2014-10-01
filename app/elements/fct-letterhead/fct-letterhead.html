@@ -1,8 +1,12 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
-<polymer-element name="fct-letterhead" attributes="">
+<polymer-element name="fct-letterhead" attributes="letter">
   <template>
     <link rel="stylesheet" href="fct-letterhead.css">
+    <img src="{{letter.data.avatar}}">
+    <h1>{{letter.data.bericht}}</h1>
+    <small>{{letter.afstand}} | {{letter.data.nick}}</small>
+
   </template>
   <script>
     (function () {
