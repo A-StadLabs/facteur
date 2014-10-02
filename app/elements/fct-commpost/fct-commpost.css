@@ -1,3 +1,9 @@
 :host {
   display: block;
 }
+
+.avatar {
+	width: 30px;
+ 	border-radius: 15px;
+	margin: 15px 15px 0px 10px;
+}
