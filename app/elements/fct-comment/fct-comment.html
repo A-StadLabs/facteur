@@ -8,15 +8,16 @@
     
       <div><img class="comm-avatar" src="{{comment.avatar}}"></div>
 
-      <div class="comm-details">
-      <p>
-      <span class="comm-time"> {{comment.time}}</span>
-      <span class="comm-nick">{{comment.usernick}}</span><br>
-      </p>
+      <div vertical layout flex>
+        <div class="comm-details">
+        <p>
+        <span class="comm-time"> {{comment.time}}</span>
+        <span class="comm-nick">{{comment.usernick}}</span>
+        </p>
+        </div>
 
-
+        <div class="comm-msg">{{comment.comment}}</div>
       </div>
-      <div class="comm-msg">{{comment.comment}}</div>
 
       
     

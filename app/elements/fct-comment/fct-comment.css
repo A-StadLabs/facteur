@@ -1,5 +1,6 @@
 :host {
   display: block;
+  margin: 0px 0px 10px 0px;
 }
 
 .comm-details {
@@ -7,6 +8,7 @@
 	font-weight: 500;
 	color: #999999;
 	margin: 0px 0px 0px 0px;
+	height: 30px;
 }
 
 
@@ -14,7 +16,7 @@
 .comm-avatar {
 	width: 30px;
  	border-radius: 15px;
-	margin: 5px 15px 0px 10px;
+	margin: 15px 15px 0px 10px;
 }
 
 
