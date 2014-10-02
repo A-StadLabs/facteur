@@ -17,12 +17,12 @@
       <div><img class="avatar" src="{{letter.data.avatar}}"></div>
       <div flex class="info">
       <small><span class="nick">{{letter.data.nick}}</span><br>
-      ± 77m </small>
+      ± {{afstand}}m </small>
       </div>
       <core-icon-button self-start icon="close" on-tap="{{close}}"></core-icon-button>
     </div>
     <div class="bericht"><h1>{{letter.data.bericht}}</h1></div>
-    
+  
     <div>
     <fct-commpost letterkey="{{letter.key}}" userobject="{{userobject}}"></fct-commpost>
 
@@ -40,12 +40,15 @@
 
       Polymer({
         // define element prototype here
-        keyChanged: function(){
+        
+
+        letterChanged: function(){
           this.handleResponse();
+          this.afstand = Math.round(this.letter.afstand*1000);
         },
 
         handleResponse: function(){
-          console.log(this.keys);
+          //console.log(this.keys);
         },
 
         close: function(){
