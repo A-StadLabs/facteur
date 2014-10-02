@@ -32,12 +32,13 @@
           var that = this;
           this.now = new Date();
           this.bericht = that.$.berichtInput.value;
-          this.body = { 'bericht': this.bericht, 'longitude': this.lon, 'latitude': this.lat, 'time': this.now, 'avatar': that.userobject.image.url, 'nick': that.userobject.nickname };
+          this.body = { 'bericht': this.bericht, 'longitude': this.longitude, 'latitude': this.latitude, 'time': this.now, 'avatar': that.userobject.image.url, 'nick': that.userobject.nickname };
           this.body = JSON.stringify(this.body);
           that.$.messagePost.body = this.body;
-          //console.log(this.body);
+          console.log(this.body);
           //console.log(that.userobject);
           that.$.messagePost.go();
+
           this.fire('done');
           //this.bericht = '';
         },
