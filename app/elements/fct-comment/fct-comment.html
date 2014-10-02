@@ -3,8 +3,24 @@
 <polymer-element name="fct-comment" attributes="comment">
   <template>
     <link rel="stylesheet" href="fct-comment.css">
-    <img src="{{comment.avatar}}"><p>Tijd: {{comment.time}}</p>
-      <p>{{comment.usernick}} / {{comment.comment}}</p>
+
+    <div horizontal layout>
+    
+      <div><img class="comm-avatar" src="{{comment.avatar}}"></div>
+
+      <div class="comm-details">
+      <p>
+      <span class="comm-time"> {{comment.time}}</span>
+      <span class="comm-nick">{{comment.usernick}}</span><br>
+      </p>
+
+
+      </div>
+      <div class="comm-msg">{{comment.comment}}</div>
+
+      
+    
+    </div>
   </template>
   <script>
     (function () {

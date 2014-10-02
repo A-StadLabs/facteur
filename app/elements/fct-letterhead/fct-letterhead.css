@@ -19,7 +19,7 @@ h1 {
 }
 
 small {
-	font-size: 11px;
+	font-size: 12px;
 	font-weight: 500;
 	color: #999999;
 }
@@ -27,5 +27,29 @@ small {
 .nick {
 	color: #285AA6;
 	font-weight: 900;
+	margin-right: 2px;
 
 }
+
+.distance {
+	margin-right: 2px;
+	margin-left: 2px;
+
+}
+
+
+.comments {
+	color: #285AA6;
+	font-weight: 300;
+	margin-left: 4px;
+}
+
+
+.comm-icon {
+	width: 12px;
+	margin-bottom: -2px;
+	margin-right: 2px;
+}
+
+
+

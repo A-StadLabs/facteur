@@ -10,13 +10,27 @@
 
     <firebase-element id="base" on-data-change="{{handleResponse}}" keys="{{keys}}" data="{{data}}" log location="https://facteur.firebaseio.com/posts/{{letter.key}}/comments/"></firebase-element>
 
-    <core-icon-button icon="close" on-tap="{{close}}"></core-icon-button>
-        <img src="{{letter.data.avatar}}">
-    <h1>{{letter.data.bericht}}</h1>
-    <small>{{letter.afstand}} | {{letter.data.nick}}</small>
+  <div vertical layout>
+
+    <div class="berichtinfo" horizontal layout>
+      <div><img class="avatar" src="{{letter.data.avatar}}"></div>
+      <div flex class="info">
+      <small><span class="nick">{{letter.data.nick}}</span><br>
+      ± 77m </small>
+      </div>
+      <core-icon-button self-start icon="close" on-tap="{{close}}"></core-icon-button>
+    </div>
+    <div class="bericht"><h1>{{letter.data.bericht}}</h1></div>
+    
+    <div>
+      <p>
+
     <template repeat="{{key in keys}}">
       <fct-comment comment="{{data[key]}}"></fct-comment>
     </template>
+    </div>
+  </div>
+
   </template>
   <script>
     (function () {
