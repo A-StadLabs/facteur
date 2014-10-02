@@ -21,9 +21,18 @@ paper-slider {
 	width: 100%;
 }
 
-#topcontainer {
-	height: 225px;
+
+paper-slider::shadow #sliderBar::shadow #activeProgress {
+  background-color: #285AA6;
 }
+
+paper-slider::shadow #sliderKnobInner {
+  background-color: #285AA6;
+}
+
+
+
+
 
 
 
