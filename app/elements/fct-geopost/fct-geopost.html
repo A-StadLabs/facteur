@@ -1,8 +1,22 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/core-icon-button/core-icon-button.html">
+<link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
 
-<polymer-element name="fct-geopost" attributes="">
+<polymer-element name="fct-geopost" attributes="longitude latitude userobject">
   <template>
     <link rel="stylesheet" href="fct-geopost.css">
+
+    <core-ajax method="POST" on-core-response="{{response}}" id="messagePost" handleAs="json" data url="https://facteur.firebaseio.com/posts/.json"></core-ajax>
+
+    <core-icon-button icon="close" on-tap="{{close}}"></core-icon-button>
+    <h1>Post uw eigen berichtje dan he gast!</h1>
+    <small>longitude={{longitude}} latitude={{latitude}}</small>
+
+    <img class="avatar" src="{{userobject.image.url}}">
+    
+    <core-input multiline flex placeholder="Laat een berichtje achter" label="bericht" class="berInput" id="berichtInput"></core-input>
+    <paper-button self-center class="submit-btn" id="button" center-justified on-tap="{{submit}}">Toevoegen</paper-button>
   </template>
   <script>
     (function () {
@@ -10,6 +24,23 @@
 
       Polymer({
         // define element prototype here
+        close: function(){
+          this.fire('closeGeoPost');
+        },
+
+        submit: function(){
+          var that = this;
+          this.now = new Date();
+          this.bericht = that.$.berichtInput.value;
+          this.body = { 'bericht': this.bericht, 'longitude': this.lon, 'latitude': this.lat, 'time': this.now, 'avatar': that.userobject.image.url, 'nick': that.userobject.nickname };
+          this.body = JSON.stringify(this.body);
+          that.$.messagePost.body = this.body;
+          //console.log(this.body);
+          //console.log(that.userobject);
+          that.$.messagePost.go();
+          this.fire('done');
+          //this.bericht = '';
+        },
       });
 
     })();
