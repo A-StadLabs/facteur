@@ -1,9 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/geo-location/geo-location.html">
-<link rel="import" href="../../bower_components/google-map/google-map.html">
 <link rel="import" href="../../bower_components/google-signin/google-signin.html">
 <link rel="import" href="../../bower_components/core-selector/core-selector.html">
-<link rel="import" href="../../bower_components/core-icon-button/core-icon-button.html">
 <link rel="import" href="../../bower_components/core-overlay/core-overlay.html">
 <link rel="import" href="../../bower_components/firebase-element/firebase-element.html">
 <link rel="import" href="../../bower_components/paper-slider/paper-slider.html">
@@ -12,27 +10,21 @@
 <!-- Our components -->
 <link rel="import" href="../../elements/fct-letterhead/fct-letterhead.html">
 <link rel="import" href="../../elements/fct-letter/fct-letter.html">
+<link rel="import" href="../../elements/fct-kaart/fct-kaart.html">
 
 <polymer-element name="fct-stage" attributes="">
   <template>
     <link rel="stylesheet" href="fct-stage.css">
 
-    <google-signin width="iconOnly" clientId="759839009338-n80siiikg3977u0qn277ebctn5s3pbgt.apps.googleusercontent.com" scopes="profile" id="gsign"></google-signin>
-
     <firebase-element id="base" on-data-change="{{handleResponse}}" keys="{{keys}}" data="{{data}}" location="https://facteur.firebaseio.com/posts/"></firebase-element>
 
     <geo-location watchpos highAccuracy id="geolocation" longitude="{{longitude}}" latitude="{{latitude}}"></geo-location>
 
-    <google-map map="{{map}}" zoom="17"  latitude="{{latitude}}" disableDefaultUI draggable="false" longitude="{{longitude}}" id="googlemap">
-
-      
-      <template repeat="{{ key in keys }}">
-        <google-map-marker latitude="{{data[key].latitude}}" longitude="{{data[key].longitude}}"></google-map-marker>
-      </template>
-    </google-map> 
+    <fct-kaart data="{{data}}" keys="{{keys}}" longitude="{{longitude}}" latitude="{{latitude}}" zoom="{{zoom}}" id="googlemap"></fct-kaart>
 
     <paper-slider pin id="slider" value="17" min="1" max="20"></paper-slider>
 
+    <google-signin width="iconOnly" clientId="759839009338-n80siiikg3977u0qn277ebctn5s3pbgt.apps.googleusercontent.com" scopes="profile" id="gsign"></google-signin>
 
     <core-selector valueattr="letter" id="letterselect">
       <template id="letterheads" repeat="{{l, i in inhoud}}">
