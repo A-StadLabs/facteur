@@ -1,4 +1,26 @@
 :host {
   display: block;
-  border-bottom: 1px solid black;
+  padding: 16px;
+  margin: 0px 0px 10px 0px;
+
+  
+}
+
+
+.avatar {
+	width: 40px;
+ 	border-radius: 20px;
+	margin: 5px 10px 0px 0px;
+}
+
+h1 {
+	margin: 0px 0px 0px 0px;
+	font-size: 18px;
+	font-weight: 400;
+}
+
+small {
+	font-size: 10px;
+	font-weight: 500;
+
 }
