@@ -1,15 +1,22 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/firebase-element/firebase-element.html">
 
 <polymer-element name="fct-letterhead" attributes="letter">
+
   <template>
+
     <link rel="stylesheet" href="fct-letterhead.css">
+
+    <firebase-element id="cbase" on-data-change="{{handleResponse}}" keys="{{ckeys}}" data="{{cdata}}" location="https://facteur.firebaseio.com/posts/{{letter.key}}/comments/"></firebase-element>
+
     <div horizontal layout>
     <div>
       <img class="avatar" src="{{letter.data.avatar}}">
     </div>
     <div flex class="info">
       <h1>{{letter.data.bericht}}</h1>
-      <small><span class="nick">{{letter.data.nick}}</span> | {{letter.afstand}}</small>
+      <small><span class="nick">{{letter.data.nick}}</span> | ±{{afstand}}m | [c] {{numcomm}}</small>
+
     </div>
   </div>
 
@@ -20,6 +27,15 @@
 
       Polymer({
         // define element prototype here
+        ready: function(){
+          this.numcomm = 0;
+          this.afstand = Math.round(this.letter.afstand*1000);
+          //this.numcomm = this.keys.length;
+        },
+
+        handleResponse: function(){
+            this.numcomm = this.ckeys.length;
+        },
       });
 
     })();
