@@ -21,7 +21,7 @@ core-icon-button {
 
 
 small {
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: 500;
 	color: #285AA6;
 }
@@ -30,7 +30,7 @@ small {
 .avatar {
 	width: 40px;
  	border-radius: 20px;
-	margin: 5px 15px 0px 0px;
+	margin: 4px 15px 0px 0px;
 }
 
 .nick {

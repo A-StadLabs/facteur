@@ -17,16 +17,15 @@
 }
 
 paper-slider {
-	background-color: white;
 	width: 100%;
 }
 
 paper-slider::shadow #sliderBar::shadow #activeProgress {
-  background-color: #285AA6;
+  background-color: #999999;
 }
 
 paper-slider::shadow #sliderKnobInner {
-  background-color: #285AA6;
+  background-color: #4D4D4D;
 }
 
 
