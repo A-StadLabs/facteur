@@ -1,8 +1,18 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
-<polymer-element name="fct-commpost" attributes="">
+<polymer-element name="fct-commpost" attributes="letterkey userobject">
+
+
+
   <template>
     <link rel="stylesheet" href="fct-commpost.css">
+
+    <core-ajax method="POST" id="commPost" handleAs="json" data url="https://facteur.firebaseio.com/posts/{{letterkey}}/comments.json"></core-ajax>
+
+    <img src="{{userobject.image.url}}" class="avatar">
+    <input id="comment"></input>
+    <core-icon-button on-tap="{{postit}}">{{userobject.nickname}}</core-icon-button>
+
   </template>
   <script>
     (function () {
@@ -10,6 +20,23 @@
 
       Polymer({
         // define element prototype here
+        letterkeyChanged: function(){
+          console.log('letterkey: ', this.letterkey);
+        },
+
+        postit: function(){
+          var that = this;
+          //this.fire('postComment', {msg: this.postid });
+          //console.log('im about to post: ', this.$.comment.value, 'in: ', this.postid);
+          this.time = new Date();
+          this.comm = { 'comment': this.$.comment.value, 'usernick': that.userobject.nickname, 'avatar': that.userobject.image.url, 'time': this.time };
+          this.comm = JSON.stringify(this.comm);
+          that.$.commPost.body = this.comm;
+
+          //console.log('Ik ga versturen: ',that.$.commPost.body);
+
+          that.$.commPost.go();
+        }
       });
 
     })();
