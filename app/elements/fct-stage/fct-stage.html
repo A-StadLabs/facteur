@@ -30,12 +30,12 @@
 
     <core-selector valueattr="letter" id="letterselect">
       <template id="letterheads" repeat="{{l, i in inhoud}}">
-        <fct-letterhead letter="{{l}}" key="{{l.key}}"></fct-letterhead>
+        <fct-letterhead letter="{{l}}" key="{{l.key}}" active!></fct-letterhead>
       </template>
     </core-selector>
 
     <core-overlay id="letteroverlay">
-      <fct-letter letter="" id="fctletter"></fct-letter>
+      <fct-letter letter="" id="fctletter" userobject="{{userobject}}"></fct-letter>
     </core-overlay>
 
     <core-overlay id="fctgeopostoverlay">
@@ -137,6 +137,7 @@
           });
 
           this.$.fctletter.addEventListener('close', function(){
+            //that.$.letterselect.clearSelection();
             that.$.letteroverlay.close();
           });
 

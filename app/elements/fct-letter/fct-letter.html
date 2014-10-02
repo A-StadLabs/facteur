@@ -1,10 +1,11 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/core-icon-button/core-icon-button.html">
 <link rel="import" href="../../elements/fct-comment/fct-comment.html">
+<link rel="import" href="../../elements/fct-commpost/fct-commpost.html">
 <link rel="import" href="../../bower_components/firebase-element/firebase-element.html">
 
 
-<polymer-element name="fct-letter" attributes="letter">
+<polymer-element name="fct-letter" attributes="letter userobject">
   <template>
     <link rel="stylesheet" href="fct-letter.css">
 
@@ -23,7 +24,8 @@
     <div class="bericht"><h1>{{letter.data.bericht}}</h1></div>
     
     <div>
-      <p>
+    <fct-commpost letterkey="{{letter.key}}" userobject="{{userobject}}"></fct-commpost>
+
 
     <template repeat="{{key in keys}}">
       <fct-comment comment="{{data[key]}}"></fct-comment>
