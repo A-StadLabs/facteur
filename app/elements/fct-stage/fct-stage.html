@@ -36,8 +36,6 @@
       <fct-letter letter="" id="fctletter"></fct-letter>
     </core-overlay>
 
-
-
   </template>
   <script>
     (function () {
@@ -150,7 +148,7 @@
             // Afstand berekenen
             afstand = this.CalculateDistance(latitude, longitude, this.data[j].latitude, this.data[j].longitude);
             console.log('afst. ',afstand);
-            if(afstand <= 0.03){
+            if(afstand <= 0.01){
               berichten.push({'afstand': afstand, 'key': j, 'data': this.data[j]});
             };
           };
