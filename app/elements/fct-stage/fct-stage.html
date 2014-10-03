@@ -7,6 +7,7 @@
 <link rel="import" href="../../bower_components/core-animated-pages/transitions/slide-from-right.html">
 <link rel="import" href="../../bower_components/firebase-element/firebase-element.html">
 <link rel="import" href="../../bower_components/paper-slider/paper-slider.html">
+<link rel="import" href="../../bower_components/core-icon-button/core-icon-button.html">
 
 <!-- Our components -->
 <link rel="import" href="../../elements/fct-letterhead/fct-letterhead.html">
@@ -23,16 +24,24 @@
     <geo-location watchpos highAccuracy id="geolocation" longitude="{{longitude}}" latitude="{{latitude}}"></geo-location>
 
 <core-animated-pages id="scenes" transitions="slide-from-right" fit>
+<section id="opening">
+<div layout vertical center center-justified id="openingscherm">
+  <h1 class="titel">Factør</h1>
+  <p class>EEN A-STADLABS EXPERIMENT</p>
+  <google-signin clientId="759839009338-n80siiikg3977u0qn277ebctn5s3pbgt.apps.googleusercontent.com" scopes="profile" id="gsign"></google-signin>
+  <p>Factør werkt best als je aangemeld bent met jouw Google+ account.</p>
+  <core-icon-button icon="arrow-forward" on-tap="{{enterApp}}">Verder gaan</core-icon-button>
+</div>
+</section>
+
 <section id="kaart_letterheads">
     <fct-kaart data="{{data}}" keys="{{keys}}" longitude="{{longitude}}" latitude="{{latitude}}" zoom="{{zoom}}" id="fctkaart"></fct-kaart>
 
     <paper-slider pin id="slider" value="17" min="1" max="20"></paper-slider>
 
-    <!-- <core-selector valueattr="letter" id="letterselect"> -->
       <template id="letterheads" repeat="{{l, i in inhoud}}">
         <fct-letterhead on-letterhead-tap="{{selectLetter}}" letter="{{l}}" key="{{l.key}}" active!></fct-letterhead>
       </template>
-    <!-- </core-selector> -->
 
 </section>
 
@@ -90,6 +99,8 @@
 
         var that = this;
 
+        that.$.scenes.selected = 0;
+
         this.addEventListener("google-signin-success", function(e) {
         // Access the GAPI instance passed back from authorization
           var gapi = e.detail.gapi;
@@ -143,21 +154,25 @@
 
           this.$.fctletter.addEventListener('close', function(){
             //that.$.letterselect.clearSelection();
-            that.$.scenes.selected = 0;
+            that.$.scenes.selected = 1;
           });
 
           this.$.fctkaart.addEventListener('openGeoPost', function(){
-            that.$.scenes.selected = 2;
+            that.$.scenes.selected = 3;
           });
 
           this.$.fctgeopost.addEventListener('closeGeoPost', function(){
-            that.$.scenes.selected = 0;
+            that.$.scenes.selected = 1;
           });
       },
 
       selectLetter: function(event, detail, sender){
         console.log('selectLetter: ', sender.letter);
         this.$.fctletter.letter = sender.letter;
+        this.$.scenes.selected = 2;
+      },
+
+      enterApp: function(){
         this.$.scenes.selected = 1;
       },
 
