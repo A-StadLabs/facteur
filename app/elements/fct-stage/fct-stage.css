@@ -11,9 +11,13 @@
 }
 
 #openingscherm {
-		width: 100%;
 	height: 100%;
+	background-color: white;
+	padding: 20px;
+	text-align: center;
+	color:white;
 }
+
 
 #fctgeopostoverlay {
 	width: 100%;
@@ -22,8 +26,15 @@
 }
 
 .titel {
-	font-size: 36px;
-	line-height: 2px;
+	font-size: 44px;
+/*	color: #FF8939;
+	border: 5px solid #FF8939;*/
+	color: #285AA6;
+	border: 5px solid #285AA6;
+	
+	padding-left: 10px;
+	padding-right: 10px;
+
 }
 
 paper-slider {
