@@ -3,6 +3,8 @@
 <link rel="import" href="../../bower_components/google-signin/google-signin.html">
 <link rel="import" href="../../bower_components/core-selector/core-selector.html">
 <link rel="import" href="../../bower_components/core-overlay/core-overlay.html">
+<link rel="import" href="../../bower_components/core-animated-pages/core-animated-pages.html">
+<link rel="import" href="../../bower_components/core-animated-pages/transitions/slide-from-right.html">
 <link rel="import" href="../../bower_components/firebase-element/firebase-element.html">
 <link rel="import" href="../../bower_components/paper-slider/paper-slider.html">
 
@@ -25,6 +27,9 @@
  -->
     <geo-location watchpos highAccuracy id="geolocation" longitude="{{longitude}}" latitude="{{latitude}}"></geo-location>
 
+
+<core-animated-pages id="scenes" transitions="slide-from-right">
+<section>
     <fct-kaart data="{{data}}" keys="{{keys}}" longitude="{{longitude}}" latitude="{{latitude}}" zoom="{{zoom}}" id="fctkaart"></fct-kaart>
 
     <paper-slider pin id="slider" value="17" min="1" max="20"></paper-slider>
@@ -35,15 +40,22 @@
       </template>
     </core-selector>
 
-    
+</section>
 
-    <core-overlay id="letteroverlay">
-      <fct-letter letter="" id="fctletter" userobject="{{userobject}}"></fct-letter>
-    </core-overlay>
 
-    <core-overlay id="fctgeopostoverlay">
-      <fct-geopost id="fctgeopost" longitude="{{longitude}}" latitude="{{latitude}}" userobject="{{userobject}}"></fct-geopost>
-    </core-overlay>
+<section>
+        <fct-letter letter="" id="fctletter" userobject="{{userobject}}"></fct-letter>
+
+</section>
+
+<section>
+        <fct-geopost id="fctgeopost" longitude="{{longitude}}" latitude="{{latitude}}" userobject="{{userobject}}"></fct-geopost>
+</section>
+
+
+</core-animated-pages>
+
+
 
   </template>
   <script>
@@ -137,20 +149,20 @@
 
           this.$.letterselect.addEventListener('core-select', function(e){
             that.$.fctletter.letter = this.selected;
-            that.$.letteroverlay.open();
+            that.$.scenes.selected = 1;
           });
 
           this.$.fctletter.addEventListener('close', function(){
             //that.$.letterselect.clearSelection();
-            that.$.letteroverlay.close();
+            that.$.scenes.selected = 0;
           });
 
           this.$.fctkaart.addEventListener('openGeoPost', function(){
-            that.$.fctgeopostoverlay.open();
+            that.$.scenes.selected = 2;
           });
 
-          this.$.fctgeopostoverlay.addEventListener('closeGeoPost', function(){
-            that.$.fctgeopostoverlay.close();
+          this.$.fctgeopost.addEventListener('closeGeoPost', function(){
+            that.$.scenes.selected = 0;
           });
       },
 
