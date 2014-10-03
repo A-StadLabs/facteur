@@ -2,6 +2,9 @@
 <link rel="import" href="../../bower_components/geo-location/geo-location.html">
 <link rel="import" href="../../bower_components/google-signin/google-signin.html">
 <link rel="import" href="../../bower_components/core-selector/core-selector.html">
+<link rel="import" href="../../bower_components/core-animated-pages/core-animated-pages.html">
+<link rel="import" href="../../bower_components/core-animated-pages/transitions/slide-from-right.html">
+
 <link rel="import" href="../../bower_components/core-overlay/core-overlay.html">
 <link rel="import" href="../../bower_components/firebase-element/firebase-element.html">
 <link rel="import" href="../../bower_components/paper-slider/paper-slider.html">
@@ -19,6 +22,8 @@
   <template>
     <link rel="stylesheet" href="fct-stage.css">
 
+<core-animated-pages id="scenes" transitions="slide-from-right">
+<section>
     <firebase-element id="base" on-data-change="{{handleResponse}}" keys="{{keys}}" data="{{data}}" location="https://facteur.firebaseio.com/posts/"></firebase-element>
 
 <!--     <fct-auser userobject="{{userobject}}"></fct-auser>
@@ -26,7 +31,7 @@
     <geo-location watchpos highAccuracy id="geolocation" longitude="{{longitude}}" latitude="{{latitude}}"></geo-location>
 
 
-    <fct-kaart data="{{data}}" keys="{{keys}}" longitude="{{longitude}}" latitude="{{latitude}}" zoom="{{zoom}}" id="googlemap"></fct-kaart>
+    <fct-kaart data="{{data}}" keys="{{keys}}" longitude="{{longitude}}" latitude="{{latitude}}" zoom="{{zoom}}" id="fctkaart"></fct-kaart>
 
     <paper-slider pin id="slider" value="17" min="1" max="20"></paper-slider>
 
@@ -35,14 +40,32 @@
         <fct-letterhead letter="{{l}}" key="{{l.key}}" active!></fct-letterhead>
       </template>
     </core-selector>
+</section>
 
-    <core-overlay id="letteroverlay">
-      <fct-letter letter="" id="fctletter" userobject="{{userobject}}"></fct-letter>
+
+
+<section>
+  <fct-letter letter="" id="fctletter" userobject="{{userobject}}"></fct-letter>
+</section>
+
+
+
+<section>
+<fct-geopost id="fctgeopost" longitude="{{longitude}}" latitude="{{latitude}}" userobject="{{userobject}}"></fct-geopost>
+</section>
+
+
+
+
+
+</core-animated-pages>
+
+<!--     <core-overlay id="letteroverlay">
     </core-overlay>
 
     <core-overlay id="fctgeopostoverlay">
-      <fct-geopost id="fctgeopost" longitude="{{longitude}}" latitude="{{latitude}}" userobject="{{userobject}}"></fct-geopost>
-    </core-overlay>
+      
+    </core-overlay> -->
 
   </template>
   <script>
@@ -136,22 +159,25 @@
 
           this.$.letterselect.addEventListener('core-select', function(e){
             that.$.fctletter.letter = this.selected;
-            that.$.letteroverlay.open();
+            that.$.scenes.selected = 1;
           });
 
           this.$.fctletter.addEventListener('close', function(){
             //that.$.letterselect.clearSelection();
-            that.$.letteroverlay.close();
+            that.$.scenes.selected = 0;
           });
 
-          this.$.googlemap.addEventListener('openGeoPost', function(){
-            that.$.fctgeopostoverlay.open();
+          this.$.fctkaart.addEventListener('openGeoPost', function(){
+            that.$.scenes.selected = 2;
+          });
+          this.$.fctgeopost.addEventListener('closeGeoPost', function(){
+            that.$.scenes.selected = 0;
           });
 
-          this.$.fctgeopostoverlay.addEventListener('closeGeoPost', function(){
-            that.$.fctgeopostoverlay.close();
-          });
       },
+
+
+
 
         handleResponse: function(e){
           var berichten = [];
