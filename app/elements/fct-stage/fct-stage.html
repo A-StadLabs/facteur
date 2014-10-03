@@ -12,7 +12,8 @@
 <link rel="import" href="../../elements/fct-letter/fct-letter.html">
 <link rel="import" href="../../elements/fct-kaart/fct-kaart.html">
 <link rel="import" href="../../elements/fct-geopost/fct-geopost.html">
-
+<!-- <link rel="import" href="../../elements/fct-auser/fct-auser.html">
+ -->
 
 <polymer-element name="fct-stage" attributes="">
   <template>
@@ -20,6 +21,8 @@
 
     <firebase-element id="base" on-data-change="{{handleResponse}}" keys="{{keys}}" data="{{data}}" location="https://facteur.firebaseio.com/posts/"></firebase-element>
 
+<!--     <fct-auser userobject="{{userobject}}"></fct-auser>
+ -->
     <geo-location watchpos highAccuracy id="geolocation" longitude="{{longitude}}" latitude="{{latitude}}"></geo-location>
 
 
@@ -99,10 +102,11 @@
               // Some useful profile information is now available
               // via the returned object (resp). For example, we
               // can discover the displayName, skills and so on.
-              //console.log(resp);
+              console.log(resp);
 
               // // This data can then be rendered into a template:
               that.userobject = resp;
+
           });
           });
         });

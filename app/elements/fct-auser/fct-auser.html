@@ -1,0 +1,60 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/firebase-element/firebase-element.html">
+
+
+<polymer-element name="fct-auser" attributes="userobject">
+  <template>
+    <link rel="script" href="http://static.firebase.com/v0/firebase.js">></script>
+    <core-ajax method="POST" id="usrPost" handleAs="json" data url="https://facteur.firebaseio.com/users.json"></core-ajax>
+
+    <firebase-element id="ubase" on-data-change="{{handleResponse}}" keys="{{ukeys}}" data="{{udata}}" log location="https://facteur.firebaseio.com/users/" start="kingflurkel" end="kingflurkel"></firebase-element>
+
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+  </template>
+  <script>
+    (function () {
+      'use strict';
+
+      Polymer({
+        // define element prototype here
+        userobjectChanged: function(){
+          console.log('userobjectChanged');
+          // new Firebase("https://facteur.firebaseio.com/users")
+          // .startAt('male')
+          // .endAt('male')
+          // .once('value', function(snap) {
+          // console.log('accounts matching etag', snap.val())
+          // });
+
+          this.handleResponse();
+        },
+
+        handleResponse: function(){
+          var that = this;
+          console.log('user checking...');
+
+          console.log('what?', this.ukeys);
+
+          if(!this.ukeys){ 
+            console.log('user niet gevonden.');
+            this.user = { 'nickname': this.userobject.nickname, 'firstname': this.userobject.name.givenName, 'avatar': this.userobject.image.url };
+            this.user = JSON.stringify(this.user);
+            that.$.usrPost.body = this.user;
+            //that.$.usrPost.go();
+          console.log('Ik ga versturen: ',that.$.usrPost.body);
+          }
+          console.log('key: ',this.ukeys,' data: ',this.udata);
+        },
+
+        ready: function(){
+
+        }
+      });
+
+    })();
+  </script>
+</polymer-element>
