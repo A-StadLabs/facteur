@@ -15,7 +15,7 @@
     </div>
     <div flex class="info">
       <h1>{{letter.data.bericht}}</h1>
-      <small><span class="nick">{{letter.data.nick}}</span> | <span class="distance">± {{afstand}}m </span>| <span class="comments"><img src="../../images/comm-icon-bubble.svg" class="comm-icon">
+      <small><span class="nick">{{letter.data.nick}}</span> | <span class="comments"><img src="../../images/comm-icon-bubble.svg" class="comm-icon">
  {{numcomm}}</span></small>
 
     </div>
@@ -30,7 +30,7 @@
         // define element prototype here
         ready: function(){
           this.numcomm = 0;
-          this.afstand = Math.round(this.letter.afstand*1000);
+          // this.afstand = Math.round(this.letter.afstand*1000);
           //this.numcomm = this.keys.length;
         },
 

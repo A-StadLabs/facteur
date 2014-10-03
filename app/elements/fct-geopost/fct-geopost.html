@@ -9,10 +9,11 @@
 
     <core-ajax method="POST" on-core-response="{{response}}" id="messagePost" handleAs="json" data url="https://facteur.firebaseio.com/posts/.json"></core-ajax>
 
-    <core-icon-button icon="close" on-tap="{{close}}"></core-icon-button>
-
-    
-    <google-signin width="iconOnly" clientId="759839009338-n80siiikg3977u0qn277ebctn5s3pbgt.apps.googleusercontent.com" scopes="profile" id="gsign"></google-signin>
+    <div vertical layout>
+      <div horizontal layout>
+        <google-signin width="iconOnly" clientId="759839009338-n80siiikg3977u0qn277ebctn5s3pbgt.apps.googleusercontent.com" scopes="profile" id="gsign" flex></google-signin>
+        <core-icon-button icon="close" on-tap="{{close}}" self-end></core-icon-button>
+      </div>
     <h1>Post uw eigen berichtje dan he gast!</h1>
     <small>longitude={{longitude}} latitude={{latitude}}</small>
 
@@ -20,6 +21,8 @@
     
     <core-input multiline flex placeholder="Laat een berichtje achter" label="bericht" class="berInput" id="berichtInput"></core-input>
     <paper-button self-center class="submit-btn" id="button" center-justified on-tap="{{submit}}">Toevoegen</paper-button>
+
+  </div>
   </template>
   <script>
     (function () {
