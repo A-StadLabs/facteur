@@ -3,7 +3,7 @@
 <link rel="import" href="../../bower_components/core-ajax/core-ajax.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 
-<polymer-element name="fct-geopost" attributes="longitude latitude userobject">
+<polymer-element name="fct-geopost" attributes="longitude latitude userobject loggedIn">
   <template>
     <link rel="stylesheet" href="fct-geopost.css">
 
@@ -11,16 +11,21 @@
 
     <div vertical layout>
       <div horizontal layout>
-        <google-signin width="iconOnly" clientId="759839009338-n80siiikg3977u0qn277ebctn5s3pbgt.apps.googleusercontent.com" scopes="profile" id="gsign" flex></google-signin>
-        <core-icon-button icon="close" on-tap="{{close}}" self-end></core-icon-button>
+            <h2 flex>Post hier een bericht:</h2>
+        <core-icon-button icon="close" on-tap="{{close}}"></core-icon-button>
       </div>
-    <h1>Post uw eigen berichtje dan he gast!</h1>
-    <small>longitude={{longitude}} latitude={{latitude}}</small>
 
+<!--     <small>longitude={{longitude}} latitude={{latitude}}</small>
+ -->
     <img class="avatar" src="{{userobject.image.url}}">
     
-    <core-input multiline flex placeholder="Laat een berichtje achter" label="bericht" class="berInput" id="berichtInput"></core-input>
-    <paper-button self-center class="submit-btn" id="button" center-justified on-tap="{{submit}}">Toevoegen</paper-button>
+    <input multiline placeholder="Geef je bericht hier in" label="bericht" class="berInput" id="berichtInput"></input>
+    <paper-button class="submit-btn" id="button" center-justified on-tap="{{submit}}">Post mijn bericht!</paper-button>
+
+<!--     <div>
+
+            <google-signin clientId="759839009338-n80siiikg3977u0qn277ebctn5s3pbgt.apps.googleusercontent.com" scopes="profile" id="gsign"></google-signin>
+    </div> -->
 
   </div>
   </template>
@@ -32,6 +37,10 @@
         // define element prototype here
         close: function(){
           this.fire('closeGeoPost');
+        },
+
+        loggedInChanged: function(){
+          this.$.gsign.hidden;
         },
 
         submit: function(){

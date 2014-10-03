@@ -23,7 +23,7 @@ core-icon-button {
 small {
 	font-size: 14px;
 	font-weight: 500;
-	color: #285AA6;
+	color: #999999;
 }
 
 
@@ -40,11 +40,25 @@ small {
 }
 
 
-.bericht {
+.berichtinfo {
 	border-bottom: 1px solid #E6E6E6;
 	padding-bottom: 20px;
 }
 
+
+
+.comments {
+	color: #285AA6;
+	font-weight: 300;
+	margin-left: 4px;
+}
+
+
+.comm-icon {
+	width: 12px;
+	margin-bottom: -2px;
+	margin-right: 2px;
+}
 
 
 

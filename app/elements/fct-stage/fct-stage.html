@@ -49,7 +49,7 @@
 </section>
 
 <section>
-        <fct-geopost id="fctgeopost" longitude="{{longitude}}" latitude="{{latitude}}" userobject="{{userobject}}"></fct-geopost>
+        <fct-geopost id="fctgeopost" longitude="{{longitude}}" latitude="{{latitude}}" userobject="{{userobject}}" loggedIn></fct-geopost>
 </section>
 
 
@@ -119,6 +119,8 @@
 
               // // This data can then be rendered into a template:
               that.userobject = resp;
+              this.loggedIn;
+
 
           });
           });
