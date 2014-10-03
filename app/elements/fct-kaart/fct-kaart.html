@@ -1,5 +1,5 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../../bower_components/google-map/google-map.html">
+<link rel="import" href="../../elements/google-map/google-map.html">
 
 <polymer-element name="fct-kaart" attributes="data keys longitude latitude zoom">
   <template>
@@ -8,7 +8,7 @@
       <img src="../../images/crosshair2B.svg" class="crosshair shadow" on-tap="{{openGeoPost}}">
     </div>
 
-    <google-map map="{{map}}" zoom="{{zoom}}"  latitude="{{latitude}}" disableDefaultUI draggable="false" longitude="{{longitude}}" id="googlemap">
+    <google-map map="{{map}}" zoom="{{zoom}}" latitude="{{latitude}}" disableDefaultUI draggable="false" longitude="{{longitude}}" id="googlemap">
       <template repeat="{{ key in keys }}">
         <google-map-marker latitude="{{data[key].latitude}}" longitude="{{data[key].longitude}}"></google-map-marker>
       </template>
@@ -17,6 +17,8 @@
   <script>
     (function () {
       'use strict';
+
+      
 
       Polymer({
         // define element prototype here
@@ -27,6 +29,8 @@
         openGeoPost: function(){
           this.fire('openGeoPost');
         }
+
+       
       });
 
     })();
