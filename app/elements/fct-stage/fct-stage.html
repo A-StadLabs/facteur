@@ -107,6 +107,7 @@
 
         this.addEventListener("google-signin-success", function(e) {
         // Access the GAPI instance passed back from authorization
+          that.$.scenes.selected = 1;
           var gapi = e.detail.gapi;
 
           // Load V1 of the G+ API
