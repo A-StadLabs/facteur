@@ -15,7 +15,6 @@
 	background-color: white;
 	padding: 20px;
 	text-align: center;
-	color:white;
 }
 
 
@@ -34,8 +33,45 @@
 	
 	padding-left: 10px;
 	padding-right: 10px;
+	margin: 0px auto;
+}
+
+.subtitel {
+	margin-top: 20px;
+	font-weight: 300;
+	font-size: 16px;
 
 }
+
+.googleinfo {
+	color: #BFBFBF;
+	width: 75%;
+	background-color: #F0F0F0;
+	padding: 10px 20px 20px 20px;
+	border-radius: 10px;
+	font-size: 13px;
+	margin: 20px 0px 20px 0px;
+
+}
+
+.nextBTN {
+	color: #285AA6;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 700;
+	text-transform: lowercase;
+	width: 280px;
+}
+
+
+
+
+#kaart_letterheads {
+	  background-color: #EDEDED;
+}
+
+
+
+
 
 paper-slider {
 	width: 100%;
@@ -48,16 +84,6 @@ paper-slider::shadow #sliderBar::shadow #activeProgress {
 paper-slider::shadow #sliderKnobInner {
   background-color: #4D4D4D;
 }
-
-
-
-
-#kaart_letterheads {
-	  background-color: #EDEDED;
-}
-
-
-
 
 
 

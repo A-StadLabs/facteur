@@ -7,6 +7,7 @@
 <link rel="import" href="../../bower_components/core-animated-pages/transitions/slide-from-right.html">
 <link rel="import" href="../../bower_components/firebase-element/firebase-element.html">
 <link rel="import" href="../../bower_components/paper-slider/paper-slider.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/core-icon-button/core-icon-button.html">
 
 <!-- Our components -->
@@ -27,10 +28,12 @@
 <section id="opening">
 <div layout vertical center center-justified id="openingscherm">
   <h1 class="titel">FACTØR</h1>
-  <p class>EEN A-STADLABS EXPERIMENT</p>
-  <google-signin clientId="759839009338-n80siiikg3977u0qn277ebctn5s3pbgt.apps.googleusercontent.com" scopes="profile" id="gsign"></google-signin>
+  <h2 class="subtitel">EEN A-STADLABS EXPERIMENT</h2>
+  <div class="googleinfo">
   <p>Factør werkt best als je aangemeld bent met jouw Google+ account.</p>
-  <core-icon-button icon="arrow-forward" on-tap="{{enterApp}}">Verder gaan</core-icon-button>
+  <google-signin clientId="759839009338-n80siiikg3977u0qn277ebctn5s3pbgt.apps.googleusercontent.com" scopes="profile" id="gsign"></google-signin>
+  </div>
+  <paper-button class="nextBTN" icon="arrow-forward" on-tap="{{enterApp}}">Verder gaan</paper-button>
 </div>
 </section>
 
