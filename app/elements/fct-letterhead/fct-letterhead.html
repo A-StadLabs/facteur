@@ -1,7 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/firebase-element/firebase-element.html">
 
-<polymer-element name="fct-letterhead" attributes="letter">
+<polymer-element name="fct-letterhead" attributes="letter" on-tap="{{letterheadTapped}}">
 
   <template>
 
@@ -27,7 +27,12 @@
       'use strict';
 
       Polymer({
-        // define element prototype here
+
+        letterheadTapped: function(event, detail, sender){
+          console.log('letterhead tapped in letterhead');
+          this.fire('letterhead-tap');
+        },
+
         ready: function(){
           this.numcomm = 0;
           // this.afstand = Math.round(this.letter.afstand*1000);

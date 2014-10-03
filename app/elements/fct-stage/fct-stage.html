@@ -8,14 +8,11 @@
 <link rel="import" href="../../bower_components/firebase-element/firebase-element.html">
 <link rel="import" href="../../bower_components/paper-slider/paper-slider.html">
 
-
 <!-- Our components -->
 <link rel="import" href="../../elements/fct-letterhead/fct-letterhead.html">
 <link rel="import" href="../../elements/fct-letter/fct-letter.html">
 <link rel="import" href="../../elements/fct-kaart/fct-kaart.html">
 <link rel="import" href="../../elements/fct-geopost/fct-geopost.html">
-<!-- <link rel="import" href="../../elements/fct-auser/fct-auser.html">
- -->
 
 <polymer-element name="fct-stage" attributes="">
   <template>
@@ -23,10 +20,7 @@
 
     <firebase-element id="base" on-data-change="{{handleResponse}}" keys="{{keys}}" data="{{data}}" location="https://facteur.firebaseio.com/posts/"></firebase-element>
 
-<!--     <fct-auser userobject="{{userobject}}"></fct-auser>
- -->
     <geo-location watchpos highAccuracy id="geolocation" longitude="{{longitude}}" latitude="{{latitude}}"></geo-location>
-
 
 <core-animated-pages id="scenes" transitions="slide-from-right" fit>
 <section id="kaart_letterheads">
@@ -34,24 +28,21 @@
 
     <paper-slider pin id="slider" value="17" min="1" max="20"></paper-slider>
 
-    <core-selector valueattr="letter" id="letterselect">
+    <!-- <core-selector valueattr="letter" id="letterselect"> -->
       <template id="letterheads" repeat="{{l, i in inhoud}}">
-        <fct-letterhead letter="{{l}}" key="{{l.key}}" active!></fct-letterhead>
+        <fct-letterhead on-letterhead-tap="{{selectLetter}}" letter="{{l}}" key="{{l.key}}" active!></fct-letterhead>
       </template>
-    </core-selector>
-
-</section>
-
-
-<section>
-        <fct-letter letter="" id="fctletter" userobject="{{userobject}}"></fct-letter>
+    <!-- </core-selector> -->
 
 </section>
 
 <section>
-        <fct-geopost id="fctgeopost" longitude="{{longitude}}" latitude="{{latitude}}" userobject="{{userobject}}"></fct-geopost>
+  <fct-letter letter="" id="fctletter" userobject="{{userobject}}"></fct-letter>
 </section>
 
+<section>
+  <fct-geopost id="fctgeopost" longitude="{{longitude}}" latitude="{{latitude}}" userobject="{{userobject}}"></fct-geopost>
+</section>
 
 </core-animated-pages>
 
@@ -147,11 +138,6 @@
             that.handleResponse();
           });
 
-          this.$.letterselect.addEventListener('core-select', function(e){
-            that.$.fctletter.letter = this.selected;
-            that.$.scenes.selected = 1;
-          });
-
           this.$.fctletter.addEventListener('close', function(){
             //that.$.letterselect.clearSelection();
             that.$.scenes.selected = 0;
@@ -164,6 +150,12 @@
           this.$.fctgeopost.addEventListener('closeGeoPost', function(){
             that.$.scenes.selected = 0;
           });
+      },
+
+      selectLetter: function(event, detail, sender){
+        console.log('selectLetter: ', sender.letter);
+        this.$.fctletter.letter = sender.letter;
+        this.$.scenes.selected = 1;
       },
 
         handleResponse: function(e){
