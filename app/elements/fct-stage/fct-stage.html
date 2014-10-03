@@ -25,8 +25,7 @@
  -->
     <geo-location watchpos highAccuracy id="geolocation" longitude="{{longitude}}" latitude="{{latitude}}"></geo-location>
 
-
-    <fct-kaart data="{{data}}" keys="{{keys}}" longitude="{{longitude}}" latitude="{{latitude}}" zoom="{{zoom}}" id="googlemap"></fct-kaart>
+    <fct-kaart data="{{data}}" keys="{{keys}}" longitude="{{longitude}}" latitude="{{latitude}}" zoom="{{zoom}}" id="fctkaart"></fct-kaart>
 
     <paper-slider pin id="slider" value="17" min="1" max="20"></paper-slider>
 
@@ -35,6 +34,8 @@
         <fct-letterhead letter="{{l}}" key="{{l.key}}" active!></fct-letterhead>
       </template>
     </core-selector>
+
+    
 
     <core-overlay id="letteroverlay">
       <fct-letter letter="" id="fctletter" userobject="{{userobject}}"></fct-letter>
@@ -102,7 +103,7 @@
               // Some useful profile information is now available
               // via the returned object (resp). For example, we
               // can discover the displayName, skills and so on.
-              console.log(resp);
+              //console.log(resp);
 
               // // This data can then be rendered into a template:
               that.userobject = resp;
@@ -117,7 +118,7 @@
 
             afstand = that.CalculateDistance(latitude, longitude, oldLatitude, oldLongitude);
 
-            if(afstand>0.003){
+            if(afstand>0.001){
               if(!locationPaused){
                 this.fire('poschanged');
                 oldLatitude = latitude;
@@ -127,7 +128,7 @@
           });
 
           this.$.slider.addEventListener('core-change', function(){
-            that.$.googlemap.zoom = this.value;
+            that.$.fctkaart.zoom = this.value;
           });
 
           document.addEventListener('poschanged', function(){
@@ -144,7 +145,7 @@
             that.$.letteroverlay.close();
           });
 
-          this.$.googlemap.addEventListener('openGeoPost', function(){
+          this.$.fctkaart.addEventListener('openGeoPost', function(){
             that.$.fctgeopostoverlay.open();
           });
 
@@ -161,7 +162,7 @@
             var j = this.keys[i];
             // Afstand berekenen
             afstand = this.CalculateDistance(latitude, longitude, this.data[j].latitude, this.data[j].longitude);
-            if(afstand <= 0.01){
+            if(afstand <= 0.02){
               berichten.push({'afstand': afstand, 'key': j, 'data': this.data[j]});
             };
           };
