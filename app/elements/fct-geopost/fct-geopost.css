@@ -26,11 +26,13 @@ core-icon-button {
 .avatar {
 	width: 40px;
 	border-radius: 20px;
+	margin: -5px 20px 0px 0px;
 }
 
 
 .berInput {
 	height: 50px;
+	width: 180px;
 	border: none;
 	background-color: #F0F0F0;
 	margin: 10px 0px 20px 0px;
@@ -48,4 +50,9 @@ core-icon-button {
 	text-transform: lowercase;
 	font-weight: 700;
 
+}
+
+
+.inputter {
+	margin-top: 10px;
 }

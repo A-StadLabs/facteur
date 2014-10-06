@@ -17,9 +17,11 @@
 
 <!--     <small>longitude={{longitude}} latitude={{latitude}}</small>
  -->
+    <div class="inputter" horizontal layout center>
     <img class="avatar" src="{{userobject.image.url}}">
     
-    <input multiline placeholder="Geef je bericht hier in" label="bericht" class="berInput" id="berichtInput"></input>
+    <input multiline placeholder="Geef je bericht in" label="bericht" class="berInput" id="berichtInput"></input>
+  </div>
     <paper-button class="submit-btn" id="button" center-justified on-tap="{{submit}}">Post mijn bericht!</paper-button>
 
 <!--     <div>

@@ -8,11 +8,13 @@
     <link rel="stylesheet" href="fct-commpost.css">
 
     <core-ajax method="POST" id="commPost" handleAs="json" data url="https://facteur.firebaseio.com/posts/{{letterkey}}/comments.json"></core-ajax>
-
+    <div vertical layout>
+      <div horizontal layout center>
     <img src="{{userobject.image.url}}" class="avatar">
     <input id="comment"></input>
+    </div>
     <core-icon-button on-tap="{{postit}}" icon="arrow-forward"></core-icon-button>
-
+     </div>
   </template>
   <script>
     (function () {

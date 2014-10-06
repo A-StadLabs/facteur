@@ -5,5 +5,17 @@
 .avatar {
 	width: 30px;
  	border-radius: 15px;
-	margin: 15px 15px 0px 10px;
+	margin: -15px 15px 0px 10px;
+}
+
+
+#comment {
+	height: 40px;
+	width: 180px;
+	border: none;
+	background-color: #F0F0F0;
+	margin: 10px 0px 20px 0px;
+	border-radius: none;
+	font-size: 16px;
+	padding-left: 20px; 
 }
